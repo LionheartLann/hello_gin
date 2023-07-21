@@ -5,13 +5,15 @@ test 10 goroutines doing 1000 jobs
 */
 import (
 	"fmt"
-	"strconv"
 	"sync"
 )
 
 var wg sync.WaitGroup
 
-const numGoroutines = 2
+const (
+	numGoroutines = 2
+	numJobs       = 1000
+)
 
 func doJob(name string, i int) {
 	//defer wg.Done()
@@ -21,11 +23,11 @@ func doJob(name string, i int) {
 func main() {
 
 	ch := make(chan string)
-	for i := 0; i <= 1000; i++ {
+	for i := 0; i <= numJobs; i++ {
 		//i := i
 		//wg.Add(1)
 		//go func() {
-		ch <- strconv.Itoa(i)
+		ch <- i[0]
 		//}()
 	}
 
