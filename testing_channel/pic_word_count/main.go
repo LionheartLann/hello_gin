@@ -17,11 +17,7 @@ import (
 	"time"
 )
 
-const (
-	numJobs = 100
-)
-
-func getImgs() []string {
+func getImgs(numJobs int) []string {
 	imgs := []string{}
 	for i := 0; i < numJobs; i++ {
 		imgs = append(imgs, strconv.Itoa(i))
@@ -37,13 +33,14 @@ func countWords(img string, i int) (int, error) {
 	}
 	return i, nil
 }
-func main() {
+
+func getTotalWords(numJobs int) int {
 	start := time.Now()
 	defer func() {
 		fmt.Println("duration: ", time.Since(start))
 	}()
 	total := 0
-	imgs := getImgs()
+	imgs := getImgs(numJobs)
 	ch := make(chan int, len(imgs))
 	// var wg sync.WaitGroup
 	for i, imgURL := range imgs {
@@ -65,4 +62,10 @@ func main() {
 		total += c
 	}
 	fmt.Println("all done ", total)
+	return total
+}
+
+func main() {
+	numJobs := 100
+	getTotalWords(numJobs)
 }
