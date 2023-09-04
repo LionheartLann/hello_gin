@@ -19,7 +19,7 @@ func BenchmarkStringContainsMatch(b *testing.B) {
 		_ = stringContainsMatch(pattern, text)
 	}
 }
-func main() {
+func TestingBenchmark(b *testing.B) {
 	fmt.Println("Running benchmarks...")
 	testing.Benchmark(BenchmarkRegexMatch)
 	testing.Benchmark(BenchmarkStringContainsMatch)

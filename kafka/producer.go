@@ -1,5 +1,8 @@
 package main
 
+/*
+https://github.com/segmentio/kafka-go
+*/
 import (
 	"context"
 	"fmt"

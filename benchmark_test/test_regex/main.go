@@ -22,7 +22,7 @@ func regexMatch(pattern, text string) bool {
 func stringContainsMatch(pattern, text string) bool {
 	return strings.Contains(text, pattern)
 }
-func main() {
+func test() {
 	pattern := "example"
 	text := "This is an example text"
 	regexResult := regexMatch(pattern, text)
