@@ -4,21 +4,26 @@ package main
 
 import (
 	"fmt"
-	"sync"
 )
 
 func main() {
+	done := make(chan bool)
 	arr := make([]int, 10) // Create an integer array of length 100
 	for i := 0; i < 10; i++ {
 		arr[i] = i
 	}
-	var wg sync.WaitGroup
+	// var wg sync.WaitGroup
 	for _, i := range arr {
-		wg.Add(1)
+		// wg.Add(1)
 		go func() {
 			fmt.Println(i)
-			wg.Done()
+			// wg.Done()
+			done <- true
 		}()
 	}
-	wg.Wait()
+
+	for _ = range arr {
+		<-done
+	}
+	// wg.Wait()
 }
